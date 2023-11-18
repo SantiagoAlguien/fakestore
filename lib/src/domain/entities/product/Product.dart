@@ -11,7 +11,7 @@ Product({
 
   int id ;
   String title;
-  int price;
+  double price;
   String category;
   String description;
   String image;
