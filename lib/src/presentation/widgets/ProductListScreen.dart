@@ -38,11 +38,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Product List'),
-      ),
-      body: Container(
+    return Container(
         
         child: FutureBuilder<List<Product>>(
           future: products,
@@ -64,7 +60,6 @@ class _ProductListScreenState extends State<ProductListScreen> {
                       children: [
                         Text(snapshot.data![index].title),
                         Image.network(snapshot.data![index].image),
-                        
                       ],
                     )
                   ),
@@ -74,7 +69,6 @@ class _ProductListScreenState extends State<ProductListScreen> {
             );
           },
         ),
-      ),
-    );
+      );
   }
 }
