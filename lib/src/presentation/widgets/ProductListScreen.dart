@@ -52,7 +52,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return Center(child: Text('No products found'));
+              return Center(child: Text('No hay productos disponibles'));
             }
             return ListView.builder(
               itemCount: snapshot.data!.length,
