@@ -24,14 +24,15 @@ class ProductMapper {
     });
 
     factory ProductMapper.fromJson(Map<String, dynamic> json) => ProductMapper(
-        id: json["id"],
-        title: json["title"],
-        price: json["price"](),
-        description: json["description"],
-        category: categoryValues.map[json["category"]]!,
-        image: json["image"],
-        rating: Rating.fromJson(json["rating"]),
+    id: json["id"],
+    title: json["title"],
+    price: (json["price"] is int) ? (json["price"] as int).toDouble() : json["price"],
+    description: json["description"],
+    category: categoryValues.map[json["category"]]!,
+    image: json["image"],
+    rating: Rating.fromJson(json["rating"]),
     );
+
 
     Map<String, dynamic> toJson() => {
         "id": id,
@@ -50,8 +51,6 @@ enum Category {
     MEN_S_CLOTHING,
     WOMEN_S_CLOTHING
 }
-
-
 
 
 final categoryValues = EnumValues({

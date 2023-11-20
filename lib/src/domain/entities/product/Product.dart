@@ -1,3 +1,4 @@
+// ignore: file_names
 class Product {
 Product({
   required this.id, 
@@ -7,7 +8,6 @@ Product({
   required this.description,
   required this.image,
   });
-  
 
   int id ;
   String title;

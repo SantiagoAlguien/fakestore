@@ -5,9 +5,9 @@ class GetProductUserCase  {
     final productGateway _productGateway;
     GetProductUserCase(this._productGateway);
     Future<Product> getProducById (String id) async{
-      return this._productGateway.getByID(id);
+      return _productGateway.getByID(id);
     }
     Future<List<Product>> getAll () async{
-      return this._productGateway.getAll();
+      return _productGateway.getAll();
     }
   }

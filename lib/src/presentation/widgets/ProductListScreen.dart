@@ -5,7 +5,10 @@ import 'package:fakestore/src/domain/repositories/ProductRepository/getAllProduc
 import 'package:flutter/material.dart';
 
 class ProductListScreen extends StatefulWidget {
+  const ProductListScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _ProductListScreenState createState() => _ProductListScreenState();
 }
 
@@ -46,7 +49,6 @@ void initState() {
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return Center(child: Text('No products found'));
           }
-
           return ListView.builder(
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
