@@ -1,4 +1,5 @@
 
+import 'package:fakestore/src/presentation/widgets/CategoryList.dart';
 import 'package:fakestore/src/presentation/widgets/ProductListScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,14 @@ class _ShopPageState extends State<ShopPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ProductListScreen();
+    return Stack(
+      alignment: AlignmentDirectional.bottomEnd, 
+      children: [
+        
+        // ProductListScreen()
+        CategoryList()
+      ],
+    );
     
   }
 }

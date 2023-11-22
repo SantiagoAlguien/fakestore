@@ -1,7 +1,7 @@
 // ignore_for_file: must_call_super
 
 import 'package:fakestore/src/data/datasources/ProductRemote.dart';
-import 'package:fakestore/src/data/repositories/ProductRepositoryImpl.dart';
+import 'package:fakestore/src/data/repositories/ProductImpl.dart';
 import 'package:fakestore/src/domain/entities/product/Product.dart';
 import 'package:fakestore/src/domain/repositories/ProductRepository/getAllProducts.dart';
 import 'package:flutter/material.dart';
@@ -38,37 +38,37 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        
-        child: FutureBuilder<List<Product>>(
-          future: products,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.active) {
-              return Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasError) {
-              return Center(child: Text('Error: ${snapshot.error}'));
-            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return Center(child: Text('No hay productos disponibles'));
-            }
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: MaterialButton(
-                    onPressed: () {},
-                    child: Column(
-                      children: [
-                        Text(snapshot.data![index].title),
-                        Image.network(snapshot.data![index].image),
-                      ],
-                    )
-                  ),
-                  subtitle: Text(snapshot.data![index].category),
-                );
-              },
-            );
-          },
-        ),
-      );
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: FutureBuilder<List<Product>>(
+        future: products,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.active) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Center(child: Text('No hay productos disponibles'));
+          }
+          return ListView.builder(
+            itemCount: snapshot.data!.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: MaterialButton(
+                  onPressed: () {},
+                  child: Column(
+                    children: [
+                      Text(snapshot.data![index].title),
+                      Image.network(snapshot.data![index].image),
+                    ],
+                  )
+                ),
+                subtitle: Text(snapshot.data![index].category),
+              );
+            },
+          );
+        },
+      ),
+    );
   }
 }

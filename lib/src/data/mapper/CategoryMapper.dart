@@ -1,7 +1,10 @@
-// ignore: file_names
+import 'package:fakestore/src/domain/entities/product/Category.dart';
 
-import 'dart:convert';
-
-List<String> categoryMapperFromJson(String str) => List<String>.from(json.decode(str).map((x) => x));
-
-String categoryMapperToJson(List<String> data) => json.encode(List<dynamic>.from(data.map((x) => x)));
+class CategoryMapper extends Category{
+  CategoryMapper({required this.name}) : super(name: '');
+  String name;
+  // Método para construir un objeto Category desde un JSON (String)
+   factory CategoryMapper.fromJson(String json) {
+    return CategoryMapper(name: json);
+  }
+}
