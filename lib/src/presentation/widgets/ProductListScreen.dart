@@ -1,6 +1,6 @@
 // ignore_for_file: must_call_super
 
-import 'package:fakestore/src/data/datasources/ProductRemoteDataSource.dart';
+import 'package:fakestore/src/data/datasources/ProductRemote.dart';
 import 'package:fakestore/src/data/repositories/ProductRepositoryImpl.dart';
 import 'package:fakestore/src/domain/entities/product/Product.dart';
 import 'package:fakestore/src/domain/repositories/ProductRepository/getAllProducts.dart';
