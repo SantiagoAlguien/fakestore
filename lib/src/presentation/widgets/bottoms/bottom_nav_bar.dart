@@ -9,7 +9,7 @@ class MybottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(5),
       child: GNav(
         onTabChange: (value) => onTabChange!(value),
         color: Colors.grey[400],
@@ -24,8 +24,8 @@ class MybottomNavBar extends StatelessWidget {
             text: ' Tienda',
           ),
           GButton(
-            icon: Icons.shopping_cart,
-            text: ' Carrito',
+            icon: Icons.person,
+            text: ' Perfil',
           ),
         ],
       ),

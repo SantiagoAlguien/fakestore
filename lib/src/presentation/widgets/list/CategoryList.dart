@@ -68,14 +68,14 @@ class _CategoryListState extends State<CategoryList> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          // Agregar aquí la lógica para manejar la selección de la categoría
+                          // Agregar 
                         },
                         child: Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(
                               color: Colors.black,
-                              width: 2.0
+                              width: 1
                             ),
                           ),
                           child: CircleAvatar(

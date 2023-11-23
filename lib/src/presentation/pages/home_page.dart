@@ -1,6 +1,7 @@
 import 'package:fakestore/cosnt.dart';
 import 'package:fakestore/src/presentation/pages/cart_page.dart';
 import 'package:fakestore/src/presentation/pages/shop_page.dart';
+import 'package:fakestore/src/presentation/widgets/bottoms/customSearch.dart';
 import 'package:fakestore/src/presentation/widgets/bottoms/bottom_nav_bar.dart';
 import 'package:fakestore/src/presentation/widgets/bottoms/drawerLateral.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Container(),
+        title: CustomSearchWidget(),
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Builder(builder: (context)=>IconButton(

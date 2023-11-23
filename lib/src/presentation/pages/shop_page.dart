@@ -1,6 +1,6 @@
 
-import 'package:fakestore/src/presentation/widgets/CategoryList.dart';
-import 'package:fakestore/src/presentation/widgets/ProductListScreen.dart';
+import 'package:fakestore/src/presentation/widgets/list/CategoryList.dart';
+import 'package:fakestore/src/presentation/widgets/list/ProductListScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +19,7 @@ class _ShopPageState extends State<ShopPage> {
       
       children: [
         Padding(
-          padding: EdgeInsets.all(25),
+          padding: EdgeInsets.all(2),
           child: CategoryList()),
         Expanded(
           child: ProductListScreen(),

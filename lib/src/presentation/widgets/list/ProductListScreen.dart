@@ -53,18 +53,53 @@ class _ProductListScreenState extends State<ProductListScreen> {
             physics: const BouncingScrollPhysics(),
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
-              return ListTile(
-                title: MaterialButton(
+              return Padding(
+                
+                padding: const EdgeInsets.all(2.0),
+                child: MaterialButton(
+                  color: Colors.white,
                   onPressed: () {},
-                  child: Column(
+                  child: Row(
                     children: [
-                      Text(snapshot.data![index].title),
-                      Image.network(snapshot.data![index].image, width: 100, height: 100,),
+                      Container(
+                        child: Image.network(snapshot.data![index].image, height:100 ,width: 100,),
+                      ),
+                      SizedBox(width: 10,),
+                      Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            snapshot.data![index].title,
+                            textAlign: TextAlign.left,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,                            
+                          ),
+                          SizedBox(height: 5,),
+                          Text("\$ " + snapshot.data![index].price.toString(), 
+                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
+
+                          )
+                        ],
+                      ),
+                    )
                     ],
-                  )
+                  ),
                 ),
-                subtitle: Text("\$ "+snapshot.data![index].price.toString()),
               );
+              // return ListTile(
+              //   title: MaterialButton(
+              //     onPressed: () {},
+              //     child: Column(
+              //       children: [
+              //         Text(snapshot.data![index].title),
+              //         Image.network(snapshot.data![index].image, width: 100, height: 100,),
+              //       ],
+              //     )
+              //   ),
+              //   subtitle: Text("\$ "+snapshot.data![index].price.toString()),
+              // );
             },
           );
         },
