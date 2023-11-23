@@ -5,7 +5,10 @@ import 'package:fakestore/src/data/mapper/ProductMapper.dart';
 import 'package:http/http.dart' as http;
 
 class ProductRemoteDataSource {
+  // ignore: no_leading_underscores_for_local_identifiers
+  ProductRemoteDataSource( String _sortResults );
   final String _baseUrl = "https://fakestoreapi.com";
+  final String _sortResults = "";
 
   Future<ProductMapper> getProductByIdFromApi(String id) async {
     final response = await http.get(Uri.parse('$_baseUrl/products/$id'));
@@ -17,7 +20,7 @@ class ProductRemoteDataSource {
   }
 
   Future<List<ProductMapper>> getAllProductsFromApi() async {
-    final response = await http.get(Uri.parse('$_baseUrl/products'));
+    final response = await http.get(Uri.parse('$_baseUrl/products/?sort=$_sortResults'));
     if (response.statusCode == 200) {
       List<dynamic> productList = json.decode(response.body);
       return productList.map((json) => ProductMapper.fromJson(json)).toList();

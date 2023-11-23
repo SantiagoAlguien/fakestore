@@ -15,12 +15,18 @@ class _ShopPageState extends State<ShopPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: AlignmentDirectional.bottomEnd, 
+    return Column(
+      
       children: [
+        Container(
+          height: 200,
+          child: CategoryList()),
+        Expanded(
+          
+            
+            child: ProductListScreen(),
+        ),
         
-        // ProductListScreen()
-        CategoryList()
       ],
     );
     

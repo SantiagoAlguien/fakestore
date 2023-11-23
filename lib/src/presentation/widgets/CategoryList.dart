@@ -19,7 +19,12 @@ class _CategoryListState extends State<CategoryList> {
   late Future<List<Category>> categories;
   late GetCategoryUserCase getCategoryUserCase;
 
-  // ignore: must_call_super
+  final Map<String, String> categoryImages = {
+    "electronics": "lib/assets/electronics.png",
+    "jewelery": "lib/assets/jewelery.png",
+    "men's clothing":"lib/assets/men's clothing.png",
+    "women's clothing":"lib/assets/women's clothing.png"
+  };
   @override
   void initState() {
   
@@ -39,7 +44,7 @@ class _CategoryListState extends State<CategoryList> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: FutureBuilder<List<Category>>(
         future: categories,
@@ -49,21 +54,20 @@ class _CategoryListState extends State<CategoryList> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('No hay productos disponibles'));
+            return Center(child: Text(''));
           }
           return ListView.builder(
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
+              String category = snapshot.data![index].name;
+              String imagePath = categoryImages[category] ?? 'lib/assets/klipartz.com.png';
               return ListTile(
-                title: MaterialButton(
-                  onPressed: () {},
-                  child: Row(
-                    children: [
-                      Text(snapshot.data![index].name),
-                    ],
-                  )
+                title: Text(category),
+                leading: Image.asset(
+                  imagePath,
+                  width: 50,
+                  height: 50,
                 ),
-                
               );
             },
           );

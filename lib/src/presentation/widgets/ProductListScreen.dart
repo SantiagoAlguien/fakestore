@@ -17,13 +17,14 @@ class ProductListScreen extends StatefulWidget {
 class _ProductListScreenState extends State<ProductListScreen> {
   late Future<List<Product>> products;
   late GetProductUserCase getProductUserCase;
+  
 
-  // ignore: must_call_super
+
   @override
   void initState() {
-  
+  final String _sortResults = "desc";
   // Crea una instancia de ProductRemoteDataSource
-  var productRemoteDataSource = ProductRemoteDataSource();
+  var productRemoteDataSource = ProductRemoteDataSource(_sortResults);
 
   // Crea una instancia de ProductRepositoryImpl con productRemoteDataSource
   var productRepository = ProductRepositoryImpl(productRemoteDataSource);
@@ -63,7 +64,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                     ],
                   )
                 ),
-                subtitle: Text(snapshot.data![index].category),
+                subtitle: Text("\$ "+snapshot.data![index].price.toString()),
               );
             },
           );
