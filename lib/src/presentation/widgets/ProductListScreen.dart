@@ -17,8 +17,6 @@ class ProductListScreen extends StatefulWidget {
 class _ProductListScreenState extends State<ProductListScreen> {
   late Future<List<Product>> products;
   late GetProductUserCase getProductUserCase;
-  
-
 
   @override
   void initState() {
@@ -40,7 +38,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(1.0),
       child: FutureBuilder<List<Product>>(
         future: products,
         builder: (context, snapshot) {
@@ -52,6 +50,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
             return Center(child: Text('No hay productos disponibles'));
           }
           return ListView.builder(
+            physics: const BouncingScrollPhysics(),
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
               return ListTile(
@@ -60,7 +59,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                   child: Column(
                     children: [
                       Text(snapshot.data![index].title),
-                      Image.network(snapshot.data![index].image),
+                      Image.network(snapshot.data![index].image, width: 100, height: 100,),
                     ],
                   )
                 ),

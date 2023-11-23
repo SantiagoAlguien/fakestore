@@ -15,20 +15,16 @@ class _ShopPageState extends State<ShopPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       
       children: [
-        Container(
-          height: 200,
+        Padding(
+          padding: EdgeInsets.all(25),
           child: CategoryList()),
         Expanded(
-          
-            
-            child: ProductListScreen(),
+          child: ProductListScreen(),
         ),
-        
       ],
-    );
-    
+    );   
   }
 }
