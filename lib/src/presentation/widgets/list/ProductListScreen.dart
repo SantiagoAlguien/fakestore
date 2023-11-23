@@ -53,41 +53,43 @@ class _ProductListScreenState extends State<ProductListScreen> {
             physics: const BouncingScrollPhysics(),
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
-              return Padding(
-                
-                padding: const EdgeInsets.all(2.0),
-                child: MaterialButton(
-                  color: Colors.white,
-                  onPressed: () {},
-                  child: Row(
-                    children: [
-                      Container(
-                        child: Image.network(snapshot.data![index].image, height:100 ,width: 100,),
-                      ),
-                      SizedBox(width: 10,),
-                      Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            snapshot.data![index].title,
-                            textAlign: TextAlign.left,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,                            
-                          ),
-                          SizedBox(height: 5,),
-                          Text("\$ " + snapshot.data![index].price.toString(), 
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
-
-                          )
-                        ],
-                      ),
-                    )
-                    ],
+              return Container(
+                  height: 150,
+                  child: MaterialButton(
+                    color: Colors.white,
+                    onPressed: () {},
+                    child: Row(
+                      children: [
+                        Container(
+                          child: Image.network(snapshot.data![index].image, height:100 ,width: 100,),
+                        ),
+                        SizedBox(width: 10,),
+                        Expanded(
+                        child: Column(
+                          
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 5,),
+                            Text(
+                              snapshot.data![index].title,
+                              textAlign: TextAlign.left,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,                            
+                            ),
+                            SizedBox(height: 5,),
+                            Text("\$ " + snapshot.data![index].price.toString(), 
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
+                            ),
+                            Text("Envio gratis", style: TextStyle(color: Colors.green),),
+                            SizedBox(height: 20,),
+                          ],
+                        ),
+                      )
+                      ],
+                    ),
                   ),
-                ),
-              );
+                
               // return ListTile(
               //   title: MaterialButton(
               //     onPressed: () {},
@@ -100,7 +102,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
               //   ),
               //   subtitle: Text("\$ "+snapshot.data![index].price.toString()),
               // );
-            },
+          );},
           );
         },
       ),

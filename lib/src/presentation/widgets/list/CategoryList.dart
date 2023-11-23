@@ -53,7 +53,7 @@ class _CategoryListState extends State<CategoryList> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('No hay datos disponibles.'));
+            return Center(child: Text(''));
           }
           return SingleChildScrollView(
             scrollDirection: Axis.horizontal,
