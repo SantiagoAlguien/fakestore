@@ -2,7 +2,6 @@
 import 'package:fakestore/src/presentation/widgets/list/CategoryList.dart';
 import 'package:fakestore/src/presentation/widgets/list/ProductListScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});

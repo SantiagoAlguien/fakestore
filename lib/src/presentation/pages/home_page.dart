@@ -5,7 +5,6 @@ import 'package:fakestore/src/presentation/widgets/bottoms/customSearch.dart';
 import 'package:fakestore/src/presentation/widgets/bottoms/bottom_nav_bar.dart';
 import 'package:fakestore/src/presentation/widgets/bottoms/drawerLateral.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -46,7 +45,9 @@ class _HomePageState extends State<HomePage> {
           },
         ),),
       actions: <Widget>[
-        IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart_outlined, color: Colors.black,size: 30,))
+        IconButton(onPressed: (){
+          
+        }, icon: Icon(Icons.shopping_cart_outlined, color: Colors.black,size: 30,))
       ],
       ),
       drawer: const DrawerLateral(),
@@ -58,4 +59,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-

@@ -1,5 +1,4 @@
 // ignore_for_file: must_call_super
-import 'package:fakestore/cosnt.dart';
 import 'package:fakestore/src/data/datasources/CategoryRemote.dart';
 import 'package:fakestore/src/data/repositories/CategoryImpl.dart';
 import 'package:fakestore/src/domain/entities/product/Category.dart';
@@ -41,8 +40,10 @@ class _CategoryListState extends State<CategoryList> {
   categories = getCategoryUserCase.getAll();
   }
 
+  
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.all(1.0),
       child: FutureBuilder<List<Category>>(
@@ -62,35 +63,37 @@ class _CategoryListState extends State<CategoryList> {
               children: snapshot.data!.map((category) {
                 String categoryName = category.name;
                 String imagePath = categoryImages[categoryName] ?? 'lib/assets/default.png';
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          // Agregar 
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
+                return MaterialButton(
+                  onPressed: () {
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Column(
+                      children: [
+                        Container(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.black,
-                              width: 1
-                            ),
                           ),
                           child: CircleAvatar(
                             backgroundColor: Colors.white,
                             radius: 30,
-                            backgroundImage: AssetImage(imagePath),
-                          ),
+                            child: ClipOval(
+                              child: Image.asset(
+                                imagePath,
+                                width: 50, // Ajusta el tamaño de la imagen dentro del círculo según tus necesidades
+                                height: 50, // Ajusta el tamaño de la imagen dentro del círculo según tus necesidades
+                                fit: BoxFit.cover, // Puedes ajustar cómo se ajusta la imagen dentro del círculo
+                              ),
+                            ),
+                          )
                         ),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        categoryName,
-                        style: TextStyle(fontSize: 12),
-                      ),
-                    ],
+                        const SizedBox(height: 10),
+                        Text(
+                          categoryName,
+                          style: const TextStyle(fontSize: 12),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               }).toList(),
