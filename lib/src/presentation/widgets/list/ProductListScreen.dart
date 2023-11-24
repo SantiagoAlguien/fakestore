@@ -4,9 +4,9 @@ import 'package:fakestore/src/data/datasources/ProductRemote.dart';
 import 'package:fakestore/src/data/repositories/ProductImpl.dart';
 import 'package:fakestore/src/domain/entities/product/Product.dart';
 import 'package:fakestore/src/domain/repositories/ProductRepository/getAllProducts.dart';
-import 'package:fakestore/src/presentation/widgets/LoadingWidget.dart';
+import 'package:fakestore/src/presentation/pages/info_product_page.dart';
 import 'package:flutter/material.dart';
-
+import 'package:loading_indicator/loading_indicator.dart';
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen({super.key});
 
@@ -21,6 +21,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
   
   @override
   void initState() {
+  super.initState();
   const String sortResults = "asc";
   // Crea una instancia de ProductRemoteDataSource
   var productRemoteDataSource = ProductRemoteDataSource(sortResults);
@@ -31,22 +32,23 @@ class _ProductListScreenState extends State<ProductListScreen> {
   // Ahora utiliza productRepository para crear GetProductUserCase
   getProductUserCase = GetProductUserCase(productRepository);
 
+  _loadProducts();
   // Llama a getAll para obtener los productos
   products = getProductUserCase.getAll();
+  
   }
   
-  Future<void> _refreshProducts() async {
-    // Vacía la lista de productos antes de cargar los nuevos
+  Future<void> _loadProducts() async {
     setState(() {
-      products = [] as Future<List<Product>>;
       products = getProductUserCase.getAll();
-    });
-
-    // Llama a la función _loadProducts para cargar los productos nuevamente
-    
+    }); 
   }
 
+  Future<void> _refreshProducts() async {
+    await _loadProducts();
+  }
 
+  
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -58,19 +60,30 @@ class _ProductListScreenState extends State<ProductListScreen> {
           future: products,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.active) {
-              return const LoadingWidget();
+              return  Center(child:CircularProgressIndicator(),);
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return Stack(children:[ LoadingWidget(),]);
+              return Center(child:CircularProgressIndicator());
             }
             return ListView.builder(
               physics: const BouncingScrollPhysics(),
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
+                final product = snapshot.data![index];
                 double imageSize = screenWidth * 0.2;
                 return MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => 
+                        InfoProduct(
+                          id: product.id.toString(),
+                        ),
+                      ),
+                    );
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -82,20 +95,20 @@ class _ProductListScreenState extends State<ProductListScreen> {
                       title: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(snapshot.data![index].title, style: const TextStyle(fontWeight: FontWeight.bold),),
+                          Text(product.title, style: const TextStyle(fontWeight: FontWeight.bold),),
                           const SizedBox(height: 10)
                         ],
                       ),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text("Envio gratuito", style: TextStyle(color: Colors.green),),
+                          Text("\$ ${product.price}", style: TextStyle(fontWeight: FontWeight.bold),),
                           const SizedBox(height: 10),
-                          Text("\$ ${snapshot.data![index].price}"),
+                          const Text("Envio gratuito", style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),),
                         ],
                       ),
                       leading: Image.network(
-                        snapshot.data![index].image,
+                        product.image,
                         height: imageSize,
                         width: imageSize,
                       ),
@@ -144,14 +157,6 @@ class _ProductListScreenState extends State<ProductListScreen> {
 //                       ],
 //                     ),
 //                   ),
-
-
-
-
-
-
-
-
 
 
               // return ListTile(

@@ -14,4 +14,6 @@ class CategoriesRemoteDataSource {
       throw Exception('Failed to load Categoriess');
     }
   }
+
+  
 }
