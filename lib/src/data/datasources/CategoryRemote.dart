@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fakestore/src/data/mapper/CategoryMapper.dart';
+import 'package:fakestore/src/data/mapper/ProductMapper.dart';
 import 'package:http/http.dart' as http;
 
 class CategoriesRemoteDataSource {
@@ -14,6 +15,13 @@ class CategoriesRemoteDataSource {
       throw Exception('Failed to load Categoriess');
     }
   }
-
-  
+ Future<List<ProductMapper>> getSingleCategoriessProducts(String _categorie) async {
+    final response = await http.get(Uri.parse('$_baseUrl/categories/$_categorie'));
+    if (response.statusCode == 200) {
+      List<dynamic> CategoriesList = json.decode(response.body);
+      return CategoriesList.map((json) => ProductMapper.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load Categoriess');
+    }
+  } 
 }

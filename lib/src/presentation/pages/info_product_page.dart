@@ -43,7 +43,7 @@ class _InfoProductState extends State<InfoProduct> {
     return Scaffold(
       appBar: AppBar(title: Column(
         children: [
-          Text("el id del producto es "+widget.id.toString()),
+          Text("Producto"),
           
         ],
       )),
@@ -59,19 +59,84 @@ class _InfoProductState extends State<InfoProduct> {
             }
             final product = snapshot.data!;
             double widthMedia = MediaQuery.of(context).size.width; 
-            double imagesize = widthMedia*0.5;
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.network(
+            double imagesize = widthMedia*0.8;
+            return SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: 20),
+                  child: Image.network(
                     product.image,
                     width: imagesize,
                     height: imagesize,
                   ),
-                ],
-              ),
-            );
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        product.title,
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        "\$${product.price}",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey, // Precio destacado
+                        ),
+                      ),
+                      SizedBox(height: 16),
+                      Text(
+                        product.description,
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                      SizedBox(height: 16),
+                      Text("Llega gratis", style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 16),),
+                      
+                      SizedBox(height: 16),
+                      Text(
+                        "Ultima disponible!!",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      SizedBox(height: 16),
+                      MaterialButton(
+                        onPressed: () {
+                          // Añadir al carrito
+                        },
+                        color: Colors.blue, // Color destacado como en la imagen
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(14.0),
+                          child: Text(
+                            "Añadir al carrito",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
           }
       ),
     );
