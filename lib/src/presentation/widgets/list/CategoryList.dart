@@ -3,6 +3,7 @@ import 'package:fakestore/src/data/datasources/CategoryRemote.dart';
 import 'package:fakestore/src/data/repositories/CategoryImpl.dart';
 import 'package:fakestore/src/domain/entities/product/Category.dart';
 import 'package:fakestore/src/domain/repositories/CategoryRepository/getAllCategory.dart';
+import 'package:fakestore/src/presentation/widgets/list/ProductListScreen.dart';
 import 'package:flutter/material.dart';
 
 class CategoryList extends StatefulWidget {
@@ -24,11 +25,12 @@ class _CategoryListState extends State<CategoryList> {
     "men's clothing": "lib/assets/men's clothing.png",
     "women's clothing": "lib/assets/women's clothing.png",
   };
+  
 
   @override
   void initState() {
   // Crea una instancia de CategoriesRemoteDataSource
-  var categoriesRemoteDataSource = CategoriesRemoteDataSource();
+  var categoriesRemoteDataSource = CategoriesRemoteDataSource(categories as String);
 
   // Crea una instancia de Impl con CategoriesRemoteDataSource
   var categoryRepository = CategoryRepositoryImpl(categoriesRemoteDataSource);
@@ -65,6 +67,11 @@ class _CategoryListState extends State<CategoryList> {
                 String imagePath = categoryImages[categoryName] ?? 'lib/assets/default.png';
                 return MaterialButton(
                   onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductListScreen())
+                    );
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),

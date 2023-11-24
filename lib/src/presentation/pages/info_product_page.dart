@@ -1,5 +1,4 @@
 import 'package:fakestore/src/data/datasources/ProductRemote.dart';
-import 'package:fakestore/src/data/mapper/ProductMapper.dart';
 import 'package:fakestore/src/data/repositories/ProductImpl.dart';
 import 'package:fakestore/src/domain/entities/product/Product.dart';
 import 'package:fakestore/src/domain/repositories/ProductRepository/getAllProducts.dart';
@@ -41,12 +40,24 @@ class _InfoProductState extends State<InfoProduct> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Column(
-        children: [
-          Text("Producto"),
-          
-        ],
-      )),
+      appBar: AppBar(
+        title: Container(
+          margin: EdgeInsets.only(top:20),
+          child: Text("Producto", style: TextStyle(color: Colors.black, fontSize: 25),)),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                  icon: const Padding(
+                    padding: EdgeInsets.all(15.0),
+                    child: Icon(Icons.arrow_back_ios, color: Colors.black,size: 30,),
+                  ),
+                onPressed: () => Navigator.pop(context),
+              );
+            },
+          ),
+        ),
       body: FutureBuilder<Product>(
         future: products,
           builder: (context, snapshot) {
@@ -137,7 +148,7 @@ class _InfoProductState extends State<InfoProduct> {
               ],
             ),
           );
-          }
+        }
       ),
     );
   }
