@@ -1,5 +1,5 @@
 import 'package:fakestore/cosnt.dart';
-import 'package:fakestore/src/presentation/pages/cart_page.dart';
+import 'package:fakestore/src/presentation/pages/Perfil.dart';
 import 'package:fakestore/src/presentation/pages/shop_page.dart';
 import 'package:fakestore/src/presentation/widgets/bottoms/customSearch.dart';
 import 'package:fakestore/src/presentation/widgets/bottoms/bottom_nav_bar.dart';
