@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 class CategoriesRemoteDataSource {
   final String _baseUrl = "https://fakestoreapi.com/products";
-
+  CategoriesRemoteDataSource(String _categorie);
   Future<List<CategoryMapper>> getAllCategoriessFromApi() async {
     final response = await http.get(Uri.parse('$_baseUrl/categories'));
     if (response.statusCode == 200) {
