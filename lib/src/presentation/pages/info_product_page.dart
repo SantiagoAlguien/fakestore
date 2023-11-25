@@ -127,7 +127,7 @@ class _InfoProductState extends State<InfoProduct> {
                         child: Padding(
                           padding: const EdgeInsets.all(14.0),
                           child: Text(
-                            "Añadir al carrito",
+                            "Añadir al carrito ",
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
