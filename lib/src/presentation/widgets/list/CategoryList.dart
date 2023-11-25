@@ -43,18 +43,17 @@ class _CategoryListState extends State<CategoryList> {
   
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.all(1.0),
       child: FutureBuilder<List<Category>>(
         future: categories,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text(''));
+            return const Center(child: Text(''));
           }
           return SingleChildScrollView(
             scrollDirection: Axis.horizontal,

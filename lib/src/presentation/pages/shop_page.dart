@@ -14,8 +14,7 @@ class _ShopPageState extends State<ShopPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      
+    return const Column(      
       children: [
         Padding(
           padding: EdgeInsets.all(2),

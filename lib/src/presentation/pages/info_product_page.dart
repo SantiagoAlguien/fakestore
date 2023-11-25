@@ -1,8 +1,10 @@
+import 'package:fakestore/cosnt.dart';
 import 'package:fakestore/src/data/datasources/ProductRemote.dart';
 import 'package:fakestore/src/data/mapper/ProductMapper.dart';
 import 'package:fakestore/src/data/repositories/ProductImpl.dart';
 import 'package:fakestore/src/domain/entities/product/Product.dart';
 import 'package:fakestore/src/domain/repositories/ProductRepository/getAllProducts.dart';
+import 'package:fakestore/src/presentation/widgets/LoadingWidget.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -41,21 +43,24 @@ class _InfoProductState extends State<InfoProduct> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Column(
-        children: [
-          Text("Producto"),
-          
-        ],
-      )),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: backgroundColor,
+        title: Column(
+          children: [
+            Text("Producto",),
+          ],
+        )
+      ),
       body: FutureBuilder<Product>(
         future: products,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.active) {
-              return  Center(child:CircularProgressIndicator(),);
+              return  LoadingWidget();
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (!snapshot.hasData ) {
-              return Center(child:CircularProgressIndicator(),);
+              return LoadingWidget();
             }
             final product = snapshot.data!;
             double widthMedia = MediaQuery.of(context).size.width; 
@@ -115,7 +120,7 @@ class _InfoProductState extends State<InfoProduct> {
                         onPressed: () {
                           // Añadir al carrito
                         },
-                        color: Colors.blue, // Color destacado como en la imagen
+                        color: backgroundColor, 
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),

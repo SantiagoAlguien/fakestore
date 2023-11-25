@@ -5,8 +5,9 @@ import 'package:fakestore/src/data/repositories/ProductImpl.dart';
 import 'package:fakestore/src/domain/entities/product/Product.dart';
 import 'package:fakestore/src/domain/repositories/ProductRepository/getAllProducts.dart';
 import 'package:fakestore/src/presentation/pages/info_product_page.dart';
+import 'package:fakestore/src/presentation/widgets/LoadingWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:loading_indicator/loading_indicator.dart';
+
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen({super.key});
 
@@ -60,11 +61,11 @@ class _ProductListScreenState extends State<ProductListScreen> {
           future: products,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.active) {
-              return  Center(child:CircularProgressIndicator(),);
+              return  const LoadingWidget();
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return Center(child:CircularProgressIndicator());
+              return const LoadingWidget();
             }
             return ListView.builder(
               physics: const BouncingScrollPhysics(),
@@ -102,7 +103,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("\$ ${product.price}", style: TextStyle(fontWeight: FontWeight.bold),),
+                          Text("\$ ${product.price}", style: const TextStyle(fontWeight: FontWeight.bold),),
                           const SizedBox(height: 10),
                           const Text("Envio gratuito", style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),),
                         ],
