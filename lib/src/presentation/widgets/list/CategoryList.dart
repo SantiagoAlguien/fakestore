@@ -3,6 +3,7 @@ import 'package:fakestore/src/data/datasources/CategoryRemote.dart';
 import 'package:fakestore/src/data/repositories/CategoryImpl.dart';
 import 'package:fakestore/src/domain/entities/product/Category.dart';
 import 'package:fakestore/src/domain/repositories/CategoryRepository/getAllCategory.dart';
+import 'package:fakestore/src/presentation/pages/category_Products_page.dart';
 import 'package:flutter/material.dart';
 
 class CategoryList extends StatefulWidget {
@@ -64,6 +65,7 @@ class _CategoryListState extends State<CategoryList> {
                 String imagePath = categoryImages[categoryName] ?? 'lib/assets/default.png';
                 return MaterialButton(
                   onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>CategoryProductsPage(categoryName: categoryName,)));
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),

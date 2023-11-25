@@ -3,7 +3,8 @@ import 'package:fakestore/src/presentation/pages/cart_page.dart';
 import 'package:fakestore/src/presentation/pages/shop_page.dart';
 import 'package:fakestore/src/presentation/widgets/bottoms/customSearch.dart';
 import 'package:fakestore/src/presentation/widgets/bottoms/bottom_nav_bar.dart';
-import 'package:fakestore/src/presentation/widgets/bottoms/drawerLateral.dart';
+import 'package:fakestore/src/presentation/widgets/bottoms/drawer.dart';
+import 'package:fakestore/src/presentation/widgets/bottoms/drawerEnd.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -45,12 +46,17 @@ class _HomePageState extends State<HomePage> {
           },
         ),),
       actions: <Widget>[
-        IconButton(onPressed: (){
-          
-        }, icon: Icon(Icons.shopping_cart_outlined, color: Colors.black,size: 30,))
+        Builder(
+          builder: (context) {
+            return IconButton(onPressed: (){
+              Scaffold.of(context).openEndDrawer();
+            }, icon: Icon(Icons.shopping_cart_outlined, color: Colors.black,size: 30,));
+          }
+        )
       ],
       ),
       drawer: const DrawerLateral(),
+      endDrawer: DrawerEnd(),
       backgroundColor: backgroundColor,
       bottomNavigationBar: MybottomNavBar(
         onTabChange: (index)=> navigateBottomBar(index),

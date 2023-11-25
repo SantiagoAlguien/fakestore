@@ -1,5 +1,6 @@
 
 
+import 'package:fakestore/cosnt.dart';
 import 'package:fakestore/src/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,7 +13,7 @@ class DrawerLateral extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.black,
+      backgroundColor: backgroundColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
