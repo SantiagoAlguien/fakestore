@@ -105,7 +105,7 @@ class _InfoProductState extends State<InfoProduct> {
                         ),
                       ),
                       SizedBox(height: 16),
-                      Text("Llega gratis", style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 16),),
+                      Text("Llega gratis ", style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 16),),
                       
                       SizedBox(height: 16),
                       Text(
