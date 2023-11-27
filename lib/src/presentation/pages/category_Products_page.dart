@@ -3,6 +3,7 @@ import 'package:fakestore/src/data/datasources/ProductRemote.dart';
 import 'package:fakestore/src/data/repositories/ProductImpl.dart';
 import 'package:fakestore/src/domain/entities/product/Product.dart';
 import 'package:fakestore/src/domain/repositories/ProductRepository/getAllProducts.dart';
+import 'package:fakestore/src/domain/repositories/ProductRepository/getByCategory.dart';
 import 'package:fakestore/src/presentation/pages/info_product_page.dart';
 import 'package:fakestore/src/presentation/widgets/LoadingWidget.dart';
 import 'package:fakestore/src/presentation/widgets/bottoms/drawer.dart';
@@ -11,7 +12,8 @@ import 'package:flutter/material.dart';
 
 
 class CategoryProductsPage extends StatefulWidget {
-  final String categoryName;
+  // ignore: prefer_typing_uninitialized_variables
+  final  categoryName;
 
   CategoryProductsPage({Key? key, required this.categoryName}) : super(key: key);
 
@@ -22,34 +24,16 @@ class CategoryProductsPage extends StatefulWidget {
 class _CategoryProductsPageState extends State<CategoryProductsPage> {
   late Future<List<Product>> products;
   late GetProductUserCase getProductUserCase;
+  late GetProductsByCategoryUseCase getProductsByCategoryUseCase;
   
   @override
   void initState() {
-  super.initState();
-  const String sortResults = "asc";
-  // Crea una instancia de ProductRemoteDataSource
-  var productRemoteDataSource = ProductRemoteDataSource(sortResults);
+    super.initState();
+    var productRemoteDataSource = ProductRemoteDataSource(widget.categoryName.toString());
+    var productRepository = ProductRepositoryImpl(productRemoteDataSource);
+    getProductsByCategoryUseCase = GetProductsByCategoryUseCase(productRepository);
+    products = getProductsByCategoryUseCase(widget.categoryName);
 
-  // Crea una instancia de ProductRepositoryImpl con productRemoteDataSource
-  var productRepository = ProductRepositoryImpl(productRemoteDataSource);
-
-  // Ahora utiliza productRepository para crear GetProductUserCase
-  getProductUserCase = GetProductUserCase(productRepository);
-
-  _loadProducts();
-  // Llama a getAll para obtener los productos
-  products = getProductUserCase.getAll();
-  
-  }
-  
-  Future<void> _loadProducts() async {
-    setState(() {
-      products = getProductUserCase.getAll();
-    }); 
-  }
-
-  Future<void> _refreshProducts() async {
-    await _loadProducts();
   }
   
   @override
@@ -59,7 +43,7 @@ class _CategoryProductsPageState extends State<CategoryProductsPage> {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
-        title: Text(widget.categoryName, style: TextStyle(color: Colors.black),),
+        title: Text(widget.categoryName.toString(), style: TextStyle(color: Colors.black),),
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Builder(builder: (context)=>IconButton(
@@ -85,7 +69,7 @@ class _CategoryProductsPageState extends State<CategoryProductsPage> {
         child: FutureBuilder<List<Product>>(
           future: products,
           builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.active) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
               return  const LoadingWidget();
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));

@@ -34,4 +34,17 @@ class ProductRepositoryImpl implements productGateway {
       image: mapper.image
     )).toList();
   }
+
+  Future<List<Product>> getProductsByCategory(String category) async {
+    var productMappers = await dataSource.getSingleCategoriessProducts(category);
+    return productMappers.map((mapper) => Product(
+        id: mapper.id,
+        title: mapper.title,
+        price: mapper.price,
+        category: categoryValues.reverse[mapper.category] ?? "valor por defecto",
+        description: mapper.description,
+        image: mapper.image
+    )).toList();
+  }
+
 }

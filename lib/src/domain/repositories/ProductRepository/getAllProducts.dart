@@ -10,4 +10,6 @@ class GetProductUserCase  {
     Future<List<Product>> getAll () async{
       return _productGateway.getAll();
     }
+
+    
   }

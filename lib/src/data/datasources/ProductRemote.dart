@@ -28,4 +28,14 @@ class ProductRemoteDataSource {
       throw Exception('Failed to load products');
     }
   }
+
+  Future<List<ProductMapper>> getSingleCategoriessProducts(String categorie) async {
+    final response = await http.get(Uri.parse('$_baseUrl/products/category/$categorie'));
+    if (response.statusCode == 200) {
+        List<dynamic> productList = json.decode(response.body);
+        return productList.map((json) => ProductMapper.fromJson(json)).toList();
+    } else {
+        throw Exception('Failed to load products');
+    } 
+  } 
 }

@@ -13,12 +13,10 @@ class CategoryList extends StatefulWidget {
   _CategoryListState createState() => _CategoryListState();
 }
 
-class _CategoryListState extends State<CategoryList> {
-
-  
+class _CategoryListState extends State<CategoryList> {  
   late Future<List<Category>> categories;
   late GetCategoryUserCase getCategoryUserCase;
-
+  String url = "";
   final Map<String, String> categoryImages = {
     "electronics": "lib/assets/electronics.png",
     "jewelery": "lib/assets/jewelery.png",
@@ -61,7 +59,7 @@ class _CategoryListState extends State<CategoryList> {
             physics: const BouncingScrollPhysics(),
             child: Row(
               children: snapshot.data!.map((category) {
-                String categoryName = category.name;
+                String categoryName = category.name.toString();
                 String imagePath = categoryImages[categoryName] ?? 'lib/assets/default.png';
                 return MaterialButton(
                   onPressed: () {
@@ -91,6 +89,7 @@ class _CategoryListState extends State<CategoryList> {
                         const SizedBox(height: 10),
                         Text(
                           categoryName,
+                          
                           style: const TextStyle(fontSize: 12),
                         ),
                       ],
