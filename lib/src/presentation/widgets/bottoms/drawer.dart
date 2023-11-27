@@ -31,13 +31,13 @@ class DrawerLateral extends StatelessWidget {
               ),
             ),
             child: const Padding(padding: EdgeInsets.symmetric(horizontal: 25.0),child: ListTile(
-              leading: Icon(Icons.home, color: Colors.white,),title: Text("Inicio", style: TextStyle(color: Colors.white),),),
+              leading: Icon(Icons.home, color: Colors.black,),title: Text("Inicio", style: TextStyle(color: Colors.black),),),
             ),
           ),
           MaterialButton(
             onPressed: () {},
             child: const Padding(padding: EdgeInsets.symmetric(horizontal: 25.0),child: ListTile(
-              leading: Icon(Icons.info, color: Colors.white,),title: Text("Informacion", style: TextStyle(color: Colors.white),),),
+              leading: Icon(Icons.info, color: Colors.black,),title: Text("Informacion", style: TextStyle(color: Colors.black),),),
             ),
           ),
             ],
@@ -45,8 +45,8 @@ class DrawerLateral extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 25.0, bottom: 25),
             child: ListTile(
-            leading: const Icon(Icons.logout, color: Colors.white,),
-            title: const Text("Cerrar app", style: TextStyle(color: Colors.white),),
+            leading: const Icon(Icons.logout, color: Colors.black,),
+            title: const Text("Cerrar app", style: TextStyle(color: Colors.black),),
             onTap: (){
               SystemNavigator.pop();
             },
