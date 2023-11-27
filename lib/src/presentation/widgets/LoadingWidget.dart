@@ -19,7 +19,9 @@ class _LoadingWidgetState extends State<LoadingWidget> {
       height: screenWidth*0.3,
       child: LoadingIndicator(
         indicatorType: Indicator.ballSpinFadeLoader,
-        colors: [Colors.black],
+        colors: [
+          Colors.black,
+        ],
       )
     ));
   }

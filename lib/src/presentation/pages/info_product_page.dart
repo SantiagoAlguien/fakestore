@@ -48,7 +48,7 @@ class _InfoProductState extends State<InfoProduct> {
         backgroundColor: backgroundColor,
         title: Column(
           children: [
-            Text("Producto",),
+            Text("Producto",style: TextStyle(),),
           ],
         )
       ),
@@ -131,7 +131,7 @@ class _InfoProductState extends State<InfoProduct> {
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white
+                              color: Colors.black
                             ),
                           ),
                         ),
