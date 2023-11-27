@@ -1,6 +1,5 @@
 import 'package:fakestore/cosnt.dart';
 import 'package:fakestore/src/data/datasources/ProductRemote.dart';
-import 'package:fakestore/src/data/mapper/ProductMapper.dart';
 import 'package:fakestore/src/data/repositories/ProductImpl.dart';
 import 'package:fakestore/src/domain/entities/product/Product.dart';
 import 'package:fakestore/src/domain/repositories/ProductRepository/getAllProducts.dart';
@@ -37,7 +36,7 @@ class _InfoProductState extends State<InfoProduct> {
   getProductUserCase = GetProductUserCase(productRepository);
 
   // Llama a getAll para obtener los productos
-  products = getProductUserCase.getProducById(widget.id) as Future<Product>;
+  products = getProductUserCase.getProducById(widget.id);
   
   }
   @override
@@ -46,7 +45,7 @@ class _InfoProductState extends State<InfoProduct> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: backgroundColor,
-        title: Column(
+        title: const Column(
           children: [
             Text("Producto",style: TextStyle(),),
           ],
@@ -56,11 +55,11 @@ class _InfoProductState extends State<InfoProduct> {
         future: products,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.active) {
-              return  LoadingWidget();
+              return  const LoadingWidget();
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (!snapshot.hasData ) {
-              return LoadingWidget();
+              return const LoadingWidget();
             }
             final product = snapshot.data!;
             double widthMedia = MediaQuery.of(context).size.width; 
@@ -69,7 +68,7 @@ class _InfoProductState extends State<InfoProduct> {
             child: Column(
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: 20),
+                  margin: const EdgeInsets.only(top: 20),
                   child: Image.network(
                     product.image,
                     width: imagesize,
@@ -83,39 +82,39 @@ class _InfoProductState extends State<InfoProduct> {
                     children: [
                       Text(
                         product.title,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Text(
                         "\$${product.price}",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.grey, // Precio destacado
                         ),
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       Text(
                         product.description,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                         ),
                       ),
-                      SizedBox(height: 16),
-                      Text("Llega gratis", style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 16),),
+                      const SizedBox(height: 16),
+                      const Text("Llega gratis", style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 16),),
                       
-                      SizedBox(height: 16),
-                      Text(
+                      const SizedBox(height: 16),
+                      const Text(
                         "Ultima disponible!!",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold
                         ),
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       MaterialButton(
                         onPressed: () {
                           // Añadir al carrito
@@ -124,8 +123,8 @@ class _InfoProductState extends State<InfoProduct> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(14.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(14.0),
                           child: Text(
                             "Añadir al carrito ",
                             style: TextStyle(
