@@ -1,6 +1,6 @@
 import 'package:fakestore/src/data/mapper/ProductMapper.dart';
 import 'package:fakestore/src/domain/entities/product/Product.dart';
-import 'package:fakestore/src/domain/entities/gateway/product_gateway.dart';
+import 'package:fakestore/src/domain/gateway/product_gateway.dart';
 import 'package:fakestore/src/data/datasources/ProductRemote.dart';
 
 class ProductRepositoryImpl implements productGateway {

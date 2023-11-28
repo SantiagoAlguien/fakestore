@@ -1,4 +1,4 @@
-  import 'package:fakestore/src/domain/entities/gateway/product_gateway.dart';
+  import 'package:fakestore/src/domain/gateway/product_gateway.dart';
   import 'package:fakestore/src/domain/entities/product/Product.dart';
 
 class GetProductUserCase  {
@@ -10,6 +10,5 @@ class GetProductUserCase  {
     Future<List<Product>> getAll () async{
       return _productGateway.getAll();
     }
-
     
   }

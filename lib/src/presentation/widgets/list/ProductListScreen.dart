@@ -63,7 +63,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
             if (snapshot.connectionState == ConnectionState.active) {
               return  const LoadingWidget();
             } else if (snapshot.hasError) {
-              return Center(child: Text('Error: ${snapshot.error}'));
+              return Center(child: Text('Error en la conexion: ${snapshot.error}'));
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
               return const LoadingWidget();
             }

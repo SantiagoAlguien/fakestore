@@ -1,5 +1,5 @@
 import 'package:fakestore/src/data/datasources/CategoryRemote.dart';
-import 'package:fakestore/src/domain/entities/gateway/category_gateway.dart';
+import 'package:fakestore/src/domain/gateway/category_gateway.dart';
 
 import '../../domain/entities/product/Category.dart';
 

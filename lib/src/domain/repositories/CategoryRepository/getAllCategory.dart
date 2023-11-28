@@ -1,4 +1,4 @@
-  import 'package:fakestore/src/domain/entities/gateway/category_gateway.dart';
+  import 'package:fakestore/src/domain/gateway/category_gateway.dart';
   import 'package:fakestore/src/domain/entities/product/Category.dart';
 
 class GetCategoryUserCase  {
