@@ -3,12 +3,14 @@
 //     final userMapper = userMapperFromJson(jsonString);
 
 import 'dart:convert';
+import 'dart:ffi';
 
 UserMapper userMapperFromJson(String str) => UserMapper.fromJson(json.decode(str));
 
 String userMapperToJson(UserMapper data) => json.encode(data.toJson());
 
 class UserMapper {
+    int id;
     String email;
     String username;
     String password;
@@ -17,6 +19,7 @@ class UserMapper {
     String phone;
 
     UserMapper({
+        required this.id,
         required this.email,
         required this.username,
         required this.password,
@@ -26,6 +29,7 @@ class UserMapper {
     });
 
     factory UserMapper.fromJson(Map<String, dynamic> json) => UserMapper(
+        id: json["id"],
         email: json["email"],
         username: json["username"],
         password: json["password"],
@@ -35,6 +39,7 @@ class UserMapper {
     );
 
     Map<String, dynamic> toJson() => {
+        "id": id,
         "email": email,
         "username": username,
         "password": password,

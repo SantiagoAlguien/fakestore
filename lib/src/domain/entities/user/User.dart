@@ -1,13 +1,5 @@
 
 class User {
-  final int id;
-  final String email;
-  final String username;
-  final String password;
-  final Name name;
-  final Address address;
-  final String phone;
-
   User({
     required this.id,
     required this.email,
@@ -17,6 +9,14 @@ class User {
     required this.address,
     required this.phone,
   });
+  int id;
+  String email;
+  String username;
+  String password;
+  Name name;
+  Address address;
+  String phone;
+  
 }
 
 class Name {

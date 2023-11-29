@@ -3,21 +3,21 @@ import 'package:fakestore/src/data/mapper/UserMapper.dart';
 import 'package:http/http.dart' as http;
 
 class AuthRemoteDataSource  {
-  
   final String _baseUrl = "https://fakestoreapi.com";
 
-  Future<UserMapper> login(String email, String password) async {
+  Future<UserMapper> login(String username, String password) async {
     final response = await http.post(
       Uri.parse('$_baseUrl/auth/login'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{
-        'email':email,
+        'username':username,
         'password':password,
       })
     );
     if (response.statusCode == 200) {
+      print(response.body);
       return UserMapper.fromJson(jsonDecode(response.body));
     }else{
       throw Exception('Falla en el login');

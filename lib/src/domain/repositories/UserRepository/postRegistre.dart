@@ -7,7 +7,33 @@ class RegistrerUserCase {
 
   RegistrerUserCase(this._gateway);
 
-  Future<User> loginAuth(String email, String password, String username, String phone) async {
-    return _gateway.register(email, password, username, phone);
+  Future<User> loginAuth(
+    String email,
+      String username,
+      String password,
+      String phone,
+      String firstName,
+      String lastName,
+      String city,
+      String street,
+      int number,
+      String zipcode,
+      String lat,
+      String long,
+  ) async {
+    return _gateway.register(
+      email, 
+      username, 
+      password, 
+      phone, 
+      firstName, 
+      lastName, 
+      city, 
+      street , 
+      number , 
+      zipcode, 
+      lat, 
+      long
+    );
   }
 }
