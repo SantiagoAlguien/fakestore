@@ -7,8 +7,8 @@ class LoginUserCase {
 
   LoginUserCase(this._gateway);
 
-  Future<User> loginAuth(String email, String password) async {
-    return _gateway.login(email, password);
+  Future<User> loginAuth(String username, String password) async {
+    return _gateway.login(username, password);
   }
 
   

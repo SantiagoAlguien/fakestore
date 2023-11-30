@@ -2,8 +2,10 @@
 
 import 'package:fakestore/cosnt.dart';
 import 'package:fakestore/src/presentation/pages/home_page.dart';
+import 'package:fakestore/src/presentation/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DrawerLateral extends StatelessWidget {
   const DrawerLateral({
@@ -47,8 +49,12 @@ class DrawerLateral extends StatelessWidget {
             child: ListTile(
             leading: const Icon(Icons.logout, color: Colors.black,),
             title: const Text("Cerrar app", style: TextStyle(color: Colors.black),),
-            onTap: (){
-              SystemNavigator.pop();
+            onTap: ()async{
+              final prefs = await SharedPreferences.getInstance();
+              await prefs.clear();
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => LoginPage()), 
+              );
             },
             ),
           )
