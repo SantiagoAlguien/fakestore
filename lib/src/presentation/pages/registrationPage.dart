@@ -6,6 +6,7 @@ class RegistrationPage extends StatefulWidget {
   const RegistrationPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _RegistrationPageState createState() => _RegistrationPageState();
 }
 
@@ -53,7 +54,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(2.0),
-                  child: Container(
+                  child: SizedBox(
                     width: imagesize,
                     height: imagesize,
                     child: Image.asset('lib/assets/klipartz.com.png'), // Asegúrate de que la ruta es correcta

@@ -21,6 +21,7 @@ class InfoProduct extends StatefulWidget {
 class _InfoProductState extends State<InfoProduct> {
   late Future<Product> products;
   late GetProductUserCase getProductUserCase;
+  final ShoppingCart shoppingCart = ShoppingCart();
   
   @override
   void initState() {

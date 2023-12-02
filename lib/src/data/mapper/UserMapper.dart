@@ -3,7 +3,7 @@
 //     final userMapper = userMapperFromJson(jsonString);
 
 import 'dart:convert';
-import 'dart:ffi';
+                      
 
 UserMapper userMapperFromJson(String str) => UserMapper.fromJson(json.decode(str));
 

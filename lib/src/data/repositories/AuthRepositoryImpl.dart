@@ -1,5 +1,4 @@
 import 'package:fakestore/src/data/datasources/UserRemote.dart';
-import 'package:fakestore/src/data/mapper/ProductMapper.dart';
 import 'package:fakestore/src/domain/entities/user/User.dart';
 import 'package:fakestore/src/domain/gateway/user_gateway.dart';
 import 'dart:convert';

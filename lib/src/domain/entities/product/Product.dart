@@ -16,3 +16,16 @@ Product({
   String description;
   String image;
 }
+
+
+class ShoppingCart {
+  List<Product> products = [];
+
+  void addProduct(Product product) {
+    products.add(product);
+  }
+
+  void deleteProduct(Product product) {
+    products.clear();
+  }// Aquí puedes agregar más métodos según sea necesario, como eliminar productos.
+}
