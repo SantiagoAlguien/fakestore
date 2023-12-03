@@ -49,19 +49,18 @@ class DrawerEnd extends StatelessWidget {
             margin: EdgeInsets.all(20),
             child: MaterialButton(
             onPressed: () => _showPaymentOptions(context),
-            color: Colors.blue, 
+            color: Colors.deepPurple, 
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
             child: const Padding(
-            
               padding: EdgeInsets.all(14.0),
               child: Text(
                 "Comprar Ahora",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black
+                  color: Colors.white
                 ),
               ),
             ),

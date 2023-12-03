@@ -1,10 +1,6 @@
-
-
-import 'package:fakestore/cosnt.dart';
 import 'package:fakestore/src/presentation/pages/home_page.dart';
 import 'package:fakestore/src/presentation/pages/login_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DrawerLateral extends StatelessWidget {
@@ -52,8 +48,9 @@ class DrawerLateral extends StatelessWidget {
             onTap: ()async{
               final prefs = await SharedPreferences.getInstance();
               await prefs.clear();
+              // ignore: use_build_context_synchronously
               Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => LoginPage()), 
+                MaterialPageRoute(builder: (context) => const LoginPage()), 
               );
             },
             ),
