@@ -48,9 +48,7 @@ class DrawerEnd extends StatelessWidget {
           Container(
             margin: EdgeInsets.all(20),
             child: MaterialButton(
-            onPressed: () {
-              _showPaymentOptions;
-            },
+            onPressed: () => _showPaymentOptions(context),
             color: Colors.blue, 
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
@@ -75,30 +73,53 @@ class DrawerEnd extends StatelessWidget {
   }
 
   void _showPaymentOptions(BuildContext context) {
-    // Mostrar un diálogo o una nueva página con las opciones de pago
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text("Formas de Pago"),
-          content: Text("Selecciona tu forma de pago"),
-          actions: <Widget>[
-            TextButton(
-              child: Text("Tarjeta de Crédito"),
-              onPressed: () {
-                // Lógica para pagar con tarjeta de crédito
-              },
-            ),
-            TextButton(
-              child: Text("PayPal"),
-              onPressed: () {
-                // Lógica para pagar con PayPal
-              },
-            ),
-            // Añadir más opciones según sea necesario
-          ],
-        );
-      },
-    );
-  }
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text("Formas de Pago"),
+        content: Text("Selecciona tu forma de pago"),
+        actions: <Widget>[
+          TextButton(
+            child: Text("Tarjeta de Crédito"),
+            onPressed: () {
+              _handlePaymentSuccess(context);
+            },
+          ),
+          TextButton(
+            child: Text("PSE"),
+            onPressed: () {
+              _handlePaymentSuccess(context);
+            },
+          ),
+          // Añadir más opciones según sea necesario
+        ],
+      );
+    },
+  );
 }
+
+void _handlePaymentSuccess(BuildContext context) {
+  Navigator.of(context).pop(); // Cierra el diálogo de pago
+
+  Provider.of<ShoppingCart>(context, listen: false).clearCart(); // Limpia el carrito
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text("Pago Realizado"),
+        content: Text("Tu pago se ha realizado con éxito."),
+        actions: <Widget>[
+          TextButton(
+            child: Text("OK"),
+            onPressed: () {
+              Navigator.of(context).pop(); // Cierra el diálogo de éxito
+              Provider.of<ShoppingCart>(context, listen: false).clearCart(); // Limpia el carrito
+            },
+          ),
+        ],
+      );
+    }
+  );
+}}

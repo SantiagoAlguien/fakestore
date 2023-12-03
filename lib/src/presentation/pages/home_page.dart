@@ -1,5 +1,5 @@
 import 'package:fakestore/cosnt.dart';
-import 'package:fakestore/src/presentation/pages/cart_page.dart';
+import 'package:fakestore/src/presentation/pages/perfil_page.dart';
 import 'package:fakestore/src/presentation/pages/shop_page.dart';
 import 'package:fakestore/src/presentation/widgets/bottoms/customSearch.dart';
 import 'package:fakestore/src/presentation/widgets/bottoms/bottom_nav_bar.dart';
@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
     //tienda pagina
     const ShopPage(),
     //carrito pagina
-    const CartPage()
+     UserProfilePage()
   ];
 
   @override

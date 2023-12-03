@@ -35,6 +35,11 @@ class ShoppingCart with ChangeNotifier {
     notifyListeners();
   }
 
+  void clearCart() {
+    _items.clear();
+    notifyListeners();
+  }
+
 
   // Puedes añadir más lógica según sea necesario, como eliminar un artículo, etc.
 }
