@@ -5,6 +5,7 @@ import 'package:fakestore/src/domain/entities/product/Product.dart';
 import 'package:fakestore/src/domain/repositories/ProductRepository/getAllProducts.dart';
 import 'package:fakestore/src/presentation/widgets/LoadingWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class InfoProduct extends StatefulWidget {
@@ -118,7 +119,11 @@ class _InfoProductState extends State<InfoProduct> {
                       const SizedBox(height: 16),
                       MaterialButton(
                         onPressed: () {
-                          // Añadir al carrito
+                          var cart = Provider.of<ShoppingCart>(context, listen: false);
+                          cart.addItem(product);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('${product.title} añadido al carrito')),
+                          );
                         },
                         color: backgroundColor, 
                         shape: RoundedRectangleBorder(

@@ -1,4 +1,6 @@
 // ignore: file_names
+import 'package:flutter/material.dart';
+
 class Product {
 Product({
   required this.id, 
@@ -18,14 +20,22 @@ Product({
 }
 
 
-class ShoppingCart {
-  List<Product> products = [];
+class ShoppingCart with ChangeNotifier {
+  List<Product> _items = [];
 
-  void addProduct(Product product) {
-    products.add(product);
+  List<Product> get items => _items;
+
+  void addItem(Product product) {
+    _items.add(product);
+    notifyListeners();
   }
 
-  void deleteProduct(Product product) {
-    products.clear();
-  }// Aquí puedes agregar más métodos según sea necesario, como eliminar productos.
+  void removeItem(Product product) {
+    _items.remove(product);
+    notifyListeners();
+  }
+
+
+  // Puedes añadir más lógica según sea necesario, como eliminar un artículo, etc.
 }
+

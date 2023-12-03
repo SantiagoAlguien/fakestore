@@ -1,11 +1,17 @@
+import 'package:fakestore/src/domain/entities/product/Product.dart';
 import 'package:fakestore/src/presentation/pages/home_page.dart';
 import 'package:fakestore/src/presentation/pages/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
 void main() {
-  runApp(const MyApp());
+  runApp( 
+    ChangeNotifierProvider(
+      create: (context) => ShoppingCart(),
+      child: MyApp())
+    );
 }
 
 class MyApp extends StatefulWidget {

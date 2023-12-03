@@ -15,7 +15,7 @@ class DrawerLateral extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: backgroundColor,
+      backgroundColor: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
